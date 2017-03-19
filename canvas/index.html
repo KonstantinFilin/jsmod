@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Canvas js module</title>
+        <script src="input-limit.mod.js"></script>
+        <script>
+            window.onload = function() {
+                var canvas = document.getElementById('maincanvas');
+                
+                if (canvas.getContext) {
+                    var ctx = canvas.getContext('2d');
+
+                    canvas.onclick = function (event) {
+                        ctx.beginPath();
+                        ctx.fillStyle = '#999';
+                        ctx.arc(event.clientX-10, event.clientY-10, 10, 0, 2 * Math.PI);
+                        ctx.stroke();
+                    }
+
+                    ctx.fillStyle = 'green';
+                    ctx.fillRect(10, 10, 100, 100);
+                    ctx.clearRect(80, 80, 200, 200);
+                    
+                    ctx.fillStyle = '#000';
+                    ctx.beginPath();
+                    ctx.moveTo(75, 50);
+                    ctx.lineTo(100, 75);
+                    ctx.lineTo(100, 25);
+                    ctx.fill();
+                    
+                    ctx.strokeStyle = '#999';
+                    ctx.lineWidth = 1;
+                    for (var i = 0; i < canvas.width; i += 50) {
+                        ctx.beginPath();
+                        ctx.moveTo(i, 0);
+                        ctx.lineTo(i, canvas.height);
+                        ctx.stroke();
+                    }
+                    
+                    for (var i = 0; i < canvas.height; i += 50) {
+                        ctx.beginPath();
+                        ctx.moveTo(0, i);
+                        ctx.lineTo(canvas.width, i);
+                        ctx.stroke();
+                    }
+                    
+                    ctx.font = '16px sans-serif';
+                    ctx.fillText('Приветствую', 150, 50);
+                        
+                } else {
+                    alert('Canvas not supported');
+                }
+            }
+        </script>
+        <style>
+            #maincanvas {
+                border: 1px solid #000;
+                background-color: #fff;
+            }
+            
+            body {
+                background-color: #f0f0f0;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="maincanvas" width="500" height="300"></canvas>
+    </body>
+</html>
+

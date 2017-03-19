@@ -1,0 +1,65 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Input-limit js module</title>
+        <script src="input-limit.mod.js"></script>
+        <script>
+            window.onload = function() {
+                inputLimit();
+                inputLimit({
+                    "source": '.my-inp-lmt',
+                    "rest": ".limit-rest"
+                });
+                inputLimit({
+                    "source": '.input-limit-source-textarea',
+                    "max": 33
+                });
+            }
+        </script>
+    </head>
+    <body>
+        <form action="" onsubmit="return false;" method="POST">
+            <table>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <td>
+                        <input type="text" name="person" class="input-limit-source" data-max="5" />
+                        <span class="input-limit-current">0</span> / 
+                        <span class="input-limit-max">0</span> 
+                        (Осталось: <span class="input-limit-rest">0</span>)
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Motto
+                    </th>
+                    <td>
+                        <input type="text" name="motto" class="my-inp-lmt" data-max="10" />
+                        Can input: <span class="limit-rest">0</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        About
+                    </th>
+                    <td>
+                        <textarea rows=7 cols="50" name="about" class="input-limit-source-textarea"></textarea>
+                        <span class="input-limit-current" data-id="a1">0</span> / 
+                        <span class="input-limit-max" data-id="a1">0</span> 
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="submit">Save</button>
+                    </td>
+                </tr>
+            </table>
+            
+            
+        </form>
+    </body>
+</html>
+
