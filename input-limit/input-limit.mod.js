@@ -39,9 +39,9 @@ var inputLimit = function (settings, getContainerFunc) {
     
     for (var idx=0; idx < len; idx++) {
         showInfo(elementList[idx]);
-        elementList[idx].onkeyup = function (event) {
+        elementList[idx].addEventListener('keyup', function (event) {
             showInfo(event.target);
-        };
+        });
     }
             
     return module;
