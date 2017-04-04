@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Ajax js module</title>
+        <script src="ajax.mod.js"></script>
+        <script>
+            function testGet()
+            {
+                getResultDiv().innerHTML = "Loading GET...";
+                setTimeout(
+                    sendRequest,
+                    3000
+                );
+            }
+            
+            function testPost()
+            {
+                getResultDiv().innerHTML = "Loading POST...";
+                setTimeout(
+                    sendRequestPost,
+                    3000
+                );
+            }
+            
+            function sendRequestPost()
+            {
+                var ajaxMod = ajax();
+                ajaxMod.setParams({ var1: "aaa", var2: "bbb" });
+                ajaxMod.post("post.php", function (ans) {
+                    var res = "";
+                    ansJson = JSON.parse(ans);
+                    
+                    for (var k in ansJson) {
+                        res += k + "=" + ansJson[k] + "<br />";
+                    }
+                    getResultDiv().innerHTML = res;
+                }, function(errCode, errMessage) {
+                    console.log("Client error");
+                });                
+            }
+            
+            function sendRequest()
+            {
+                var ajaxMod = ajax();
+                ajaxMod.get("ans.txt", function (ans) {
+                    getResultDiv().innerHTML = ans.replace("\n", "<br />");
+                }, function(errCode, errMessage) {
+                    console.log("Client error");
+                });
+            }
+            
+            window.onload = function() {
+                getButton().addEventListener("click", testGet);
+                getButtonPost().addEventListener("click", testPost);
+            }
+            
+            function getResultDiv()
+            {
+                return document.getElementById("result");
+            }
+            
+            function getButton()
+            {
+                return document.getElementById("testGet");
+            }
+            
+            function getButtonPost()
+            {
+                return document.getElementById("testPost");
+            }
+        </script>
+        <style>
+
+        </style>
+    </head>
+    <body>
+        <button id="testGet">Test Get</button>
+        <button id="testPost">Test Post</button>
+        <div id="result"></div>
+    </body>
+</html>
+
